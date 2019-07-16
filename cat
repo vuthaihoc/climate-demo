@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$climate = new League\CLImate\CLImate;
+
+$climate->arguments->add([
+    'help' => [
+        'prefix' => 'h',
+        'longPrefix'  => 'help',
+        'description' => 'Prints a usage statement',
+        'noValue'     => true,
+    ],
+    'path' => [
+        'description' => 'Path to file',
+    ]
+]);
+
+$climate->description('An alternative of cat command');
+
+
+$climate->arguments->parse();
+
+if($climate->arguments->get('help')){
+    $climate->usage();
+    exit();
+}
+
+$path = $climate->arguments->get('path');
+
+if(file_exists($path)){
+    $climate->out(file_get_contents($path));
+}else{
+    $climate->to('error')->error('File not found');
+}

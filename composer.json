@@ -1,0 +1,12 @@
+{
+    "name": "hocvt/climate",
+    "authors": [
+        {
+            "name": "Vu Thai Hoc",
+            "email": "vuthaihoc.ttud@gmail.com"
+        }
+    ],
+    "require": {
+        "league/climate": "^3.5"
+    }
+}
